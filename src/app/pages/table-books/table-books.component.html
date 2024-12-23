@@ -1,0 +1,70 @@
+<div class="content-container"
+    [style]="{ 'display': 'flex', 'flex-direction':'column', 'justify-content': 'center', 'align-items':'center', 'gap': '20px' }">
+    <div class="card">
+        <p-table #dt2 trackBy="id" [value]="books" [paginator]="true" [rows]="rows"
+            [rowsPerPageOptions]="[5, 10, 20, 30, 40, 50]" [first]="first" [totalRecords]="totalRecords"
+            [showCurrentPageReport]="true" [lazy]="true" (onLazyLoad)="fetchBooks($event)" [loading]="loading"
+            [responsive]="true" (onPage)="pageChange($event)"
+            [globalFilterFields]="['title', 'authors[0].name', 'publisher.name']"
+            [tableStyle]="{ 'min-width': '50rem' }">
+
+            <!-- Filtro Global -->
+            <ng-template pTemplate="caption">
+                <div class="flex">
+                    <input pInputText type="text" [(ngModel)]="searchValue" (input)="onGlobalSearch()"
+                        placeholder="Buscar por palavra-chave" />
+                </div>
+            </ng-template>
+
+            <!-- Cabeçalho da Tabela -->
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="id" style="width:25%">
+                        ID <p-sortIcon field="id" />
+                    </th>
+
+                    <th style="min-width:15rem">
+                        <div class="flex align-items-center">
+                            Título
+                            <p-columnFilter type="text" field="title" display="menu"
+                                (filterApply)="onFilterApply($event)"
+                                (filterClear)="onFilterClear('title')">
+                            </p-columnFilter>
+                        </div>
+                    </th>
+                    <th style="min-width:15rem">
+                        <div class="flex align-items-center">
+                            Autor
+                            <p-columnFilter type="text" field="authorName" display="menu"
+                                
+                                (filterClear)="onFilterClear('authorName')">
+                            </p-columnFilter>
+                        </div>
+                    </th>
+                    <th style="min-width:15rem">
+                        <div class="flex align-items-center">
+                            Editora
+                            <p-columnFilter 
+                                type="text" 
+                                field="publisherName" 
+                                display="menu"
+                                
+                                (filterClear)="onFilterClear('publisherName')">
+                            </p-columnFilter>
+                        </div>
+                    </th>
+                </tr>
+            </ng-template>
+
+            <!-- Corpo da Tabela -->
+            <ng-template pTemplate="body" let-book>
+                <tr>
+                    <td>{{ book.id }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.authors[0]?.name }}</td>
+                    <td>{{ book.publisher?.name }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

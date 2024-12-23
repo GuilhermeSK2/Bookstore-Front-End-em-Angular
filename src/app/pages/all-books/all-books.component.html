@@ -1,0 +1,23 @@
+<div class="content-container" [style]="{ 'display': 'flex', 'flex-direction':'column','justify-content': 'center', 'align-items':'center' ,'gap': '20px' }">
+    <p-dropdown [options]="filterOptions" [(ngModel)]="currentView" placeholder="Selecione uma opção"
+        (onChange)="updateBooksList()">
+    </p-dropdown>
+    <div
+        [style]="{'width': '1400px','display': 'flex','flex-wrap': 'wrap', 'justify-content': 'center', 'align-items': 'center', 'gap': '10px', 'padding': '40px', 'border-radius': '30px','background-image': 'linear-gradient(to right, var(--bluegray-500), var(--bluegray-800))' }">
+
+        <p-card *ngFor="let book of books" header="{{book.title}}"
+            [style]="{'display': 'flex', 'width': '360px', 'height': '320px' }">
+            <p><strong>Editora:</strong> {{ book.publisher.name }}</p>
+            <p><strong>Autor:</strong> {{ book.authors[0].name }}</p>
+            <p><strong>Comentário:</strong> {{ book.review.comment }}</p>
+            <ng-template pTemplate="footer">
+                <div class="flex gap-3 mt-1" [style]="{ 'display': 'flex', 'gap': '10px' }">
+                    <!-- Passa o id do livro para a página de edição -->
+                    <p-button label="Editar" icon="pi pi-pencil" severity="info" (click)="editarLivro(book)"></p-button>
+                    <p-button label="Deletar" icon="pi pi-trash" severity="danger"
+                        (click)="excluirLivro(book.id)"></p-button>
+                </div>
+            </ng-template>
+        </p-card>
+    </div>
+</div>

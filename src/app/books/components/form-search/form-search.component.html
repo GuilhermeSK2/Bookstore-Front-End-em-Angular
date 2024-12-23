@@ -1,0 +1,23 @@
+    <form [formGroup]="bookForm" (ngSubmit)="fetchBookById()" [style]="{ 'display': 'flex', 'flex-direction': 'column', 'justify-content': 'center', 'align-items': 'center', 'width': '800px', 'padding': '40px', 'gap': '20px', 'color': '#fff', 'border-radius':'20px', 'background-image': 'linear-gradient(to right, var(--bluegray-500), var(--bluegray-800))' }">
+        <p-card>
+            <p-tag value="ID/Título:"/>
+            <input type="text" pInputText id="id" formControlName="query" placeholder="Digite o ID ou o título do livro" [style]="{ 'margin':' 0 20px'}" />
+            <p-button type="submit">Buscar Livro</p-button>
+        </p-card>
+
+        <!-- Exibir dados do livro específico se for encontrado -->
+        <div *ngIf="books.length > 0" [style]="{ 'display': 'flex', 'flex-direction': 'column', 'justify-content': 'center', 'gap': '20px'}">
+            <p-card *ngFor="let book of books" class="book-card">
+                <h2>{{ book?.title || '' }}</h2>
+                <p><strong>Editora:</strong> {{ book?.publisher?.name || 'N/A' }}</p>
+                <p><strong>Autor:</strong> {{ book?.authors?.[0]?.name || 'N/A' }}</p>
+                <p><strong>Comentário:</strong> {{ book?.review?.comment || 'Sem comentários' }}</p>
+            </p-card>
+        </div>
+        <!-- Exibir mensagem de erro se o livro não for encontrado -->
+        <p-card *ngIf="statusMessage" [style]="{'width':'300px', 'height':'40px', 'display':'flex', 'justify-content':'center', 'align-items':'center', 'text-align':'center', 'color':'red', 'font-weight': '700',}">
+            <p>
+                {{ statusMessage }}
+            </p>
+        </p-card>
+    </form>

@@ -1,0 +1,12 @@
+<p-toolbar styleClass="bg-gray-900 shadow-2" [style]="{'height': '120px','width':'1600px', 'margin': ' 30px 0 60px 0', 'color': '#fff', 'display': 'flex', 'flex-direction': 'row', 'justify-content': 'space-between', 'align-items': 'center', 'padding': '0 60px', 'border-radius': '1rem', 'background-image': 'linear-gradient(to right, var(--bluegray-500), var(--bluegray-800))' }">
+    <h1>Bookstore</h1>
+            <div [style]="{'color': '#fff', 'display': 'flex', 'gap': '50px' }">
+                <!--<p-button icon="pi pi-list" label="Lista de livros" severity="success" routerLink="/"></p-button>-->
+                <p-button icon="pi pi-list" label="Tabela de livros" severity="success" routerLink="/tablebooks"></p-button>
+                <p-button icon="pi pi-list" label="Status" severity="warning" routerLink="/tablestatus"></p-button>
+                <!--<p-button icon="pi pi-list" label="Lista de editoras" severity="success" routerLink="/publishers"></p-button>
+                <p-button icon="pi pi-list" label="Lista de autores" severity="success" routerLink="/authors"></p-button>-->
+                <p-button icon="pi pi-search" label="Buscar livro" routerLink="/DetailsBook"></p-button>
+                <p-button icon="pi pi-plus" label="Cadastrar um novo livro" routerLink="/AddBook"></p-button>
+            </div>
+</p-toolbar>

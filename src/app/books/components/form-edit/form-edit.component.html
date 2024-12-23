@@ -1,0 +1,20 @@
+<form (ngSubmit)="atualizarLivro()">
+    <p-card [style]="{ 'width': '400px', 'height': '350px', 'display': 'flex', 'justify-content': 'center', 'align-items': 'center', 'background-image': 'linear-gradient(to right, var(--bluegray-500), var(--bluegray-800))'}" >
+        <div [style]="{ 'display': 'flex', 'flex-direction': 'column', 'justify-content': 'center', 'align-items': 'center', 'padding': '10px', 'gap': '15px'}">
+            <p-inputGroup>
+                <p-inputGroupAddon><i class="pi pi-book"></i></p-inputGroupAddon>
+                <input type="text" pInputText id="title" [(ngModel)]="book.title" name="title" required />
+            </p-inputGroup>
+            <p-inputGroup>
+                <p-inputGroupAddon><i class="pi pi-pencil"></i></p-inputGroupAddon>
+                <textarea id="reviewComment" pInputText [(ngModel)]="book.reviewComment" name="reviewComment"></textarea>
+            </p-inputGroup>
+            <!--<p-button type="submit">{{statusButton}}</p-button>
+            <p-button type="submit">{{statusButton}}</p-button>-->
+            <p-button type="submit">Atualizar Livro</p-button>
+            <p-card [style]="{ 'width': '280px', 'height': '40px', 'display': 'flex', 'justify-content': 'center', 'align-items': 'center', 'color': ''}" class="message" *ngIf="statusMessage">
+                <p>{{ statusMessage }}</p>
+            </p-card>
+        </div>
+    </p-card>
+</form>

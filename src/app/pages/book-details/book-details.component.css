@@ -1,6 +1,7 @@
-*{
+.edit-book-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: #585858;
 }

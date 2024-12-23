@@ -1,0 +1,94 @@
+<div class="content-container"
+    [style]="{ 'display': 'flex', 'flex-direction':'column', 'justify-content': 'center', 'align-items':'center', 'gap': '20px' }">
+    <div class="card">
+        <p-table #dt2 trackBy="id" [value]="books" [paginator]="true" [rows]="rows"
+            [rowsPerPageOptions]="[5, 10, 20, 30, 40, 50]" [first]="first" [totalRecords]="totalRecords"
+            [showCurrentPageReport]="true" [lazy]="true" (onLazyLoad)="fetchBooks($event)" [loading]="loading"
+            [responsive]="true" (onPage)="pageChange($event)"
+            [globalFilterFields]="['title', 'authors[0].name', 'publisher.name']"
+            [tableStyle]="{ 'min-width': '80rem' }">
+
+            <!-- Filtro Global -->
+            <ng-template pTemplate="caption">
+
+
+
+            </ng-template>
+
+            <!-- Cabeçalho da Tabela -->
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="id" style="width:10%; align-items: center; justify-content: center; text-align: center;">
+                        ID
+                    </th>
+
+                    <th pSortableColumn="title" style="width:10%; align-items: center; justify-content: center; text-align: center;">
+                        Nome
+                    </th>
+
+                    <th pSortableColumn="authorName" style="width:10%; align-items: center; justify-content: center; text-align: center;">
+                        Autor
+                        <p-columnFilter type="text" field="authorName" display="menu">
+                        </p-columnFilter>
+                    </th>
+
+                    <th pSortableColumn="publisherName" style="width:10%; align-items: center; justify-content: center; text-align: center;">
+                        Editora
+                    </th>
+
+                    <th style="width:10%; align-items: center; justify-content: center; text-align: center;">
+                        <!-- Dropdown para filtrar por status -->
+                        <p-dropdown [options]="statusOptions" [(ngModel)]="filters.isActive"
+                            placeholder="Filtrar por Status" (onChange)="fetchBooks({first: 0, rows: rows})">
+                        </p-dropdown>
+                    </th>
+
+                    <th style="display: flex; flex-direction: column; text-align: center; justify-content: center; align-items: center;">
+                        <div class="flex align-items-center" style="width:60%; display: flex; text-align: center; justify-content: center; align-items: center;">
+                            Filtrar por data
+                        </div>
+                        <br>
+                        <div class="flex align-items-center" style="gap: 15px; display: flex; justify-content: center; align-items: center;">
+                            De:
+                            <p-calendar [(ngModel)]="stDate" dateFormat="dd/mm/yy" (onSelect)="fetchBooks(stDate)">
+                            </p-calendar>
+                        </div>
+                        <div class="flex align-items-center" style="gap: 10px; display: flex; justify-content: center; align-items: center;">
+                            Até:
+                            <p-calendar [(ngModel)]="edDate" dateFormat="dd/mm/yy" (onSelect)="fetchBooks(edDate)">
+                            </p-calendar>
+                        </div>
+                    </th>
+
+                </tr>
+            </ng-template>
+
+            <!-- Corpo da Tabela -->
+            <ng-template pTemplate="body" let-book>
+                <tr>
+                    <td style="width:10%; align-items: center; justify-content: center; text-align: center;">
+                        {{ book.id }}
+                    </td>
+                    <td style="width:10%; align-items: center; justify-content: center; text-align: center;">
+                        {{ book.title }}
+                    </td>
+                    <td style="width:10%; align-items: center; justify-content: center; text-align: center;">
+                        {{ book.authors[0]?.name }}
+                    </td>
+                    <td style="width:10%; align-items: center; justify-content: center; text-align: center;">
+                        {{ book.publisher?.name }}
+                    </td>
+
+                    <td style="width:10%; align-items: center; justify-content: center; text-align: center;">
+                        <p-tag [value]="book.active ? 'Ativo' : 'Inativo'"
+                            [severity]="book.active ? 'success' : 'danger'">
+                        </p-tag>
+                    </td>
+
+                    <td style="width:10%;  justify-content: center; text-align: center;">
+                        {{ book.createdAt }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

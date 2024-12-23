@@ -1,0 +1,34 @@
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <p-card
+        [style]="{ 'width': '600px', 'height': '500px', 'display': 'flex', 'justify-content': 'center', 'align-items': 'center', 'padding': '10px', 'color': '#fff', 'border-radius':'20px', 'background-image': 'linear-gradient(to right, var(--bluegray-500), var(--bluegray-800))' }">
+        <div
+            [style]="{ 'display': 'flex', 'flex-direction': 'column', 'justify-content': 'center', 'align-items': 'center', 'gap': '8px'}">
+            <h1>Cadastrar livro</h1>
+            <p-inputGroup>
+                <p-inputGroupAddon><i class="pi pi-book"></i></p-inputGroupAddon>
+                <input pInputText placeholder="Título" formControlName="title" />
+            </p-inputGroup>
+            <p-inputGroup>
+                <p-inputGroupAddon><i class="pi pi-bookmark-fill"></i></p-inputGroupAddon>
+                <p-dropdown [options]="publishers" [(ngModel)]="selectedPublisher" optionLabel="name"
+                    placeholder="Selecione a editora" formControlName="publisherId" [style]="{ 'width': '300px', 'height': '50px', 'display': 'flex', 'justify-content': 'center', 'align-items': 'center'}"/>
+            </p-inputGroup>
+            <p-inputGroup>
+                <p-inputGroupAddon><i class="pi pi-user"></i></p-inputGroupAddon>
+                <p-dropdown [options]="authors" [(ngModel)]="selectedAuthors" optionLabel="name"
+                    placeholder="Selecione o autor" formControlName="authorIds" [style]="{ 'width': '300px', 'height': '50px', 'display': 'flex', 'justify-content': 'center', 'align-items': 'center'}"/>
+            </p-inputGroup>
+            <p-inputGroup>
+                <p-inputGroupAddon><i class="pi pi-pencil"></i></p-inputGroupAddon>
+                <textarea rows="5" cols="30" pInputTextarea formControlName="reviewComment"
+                    [autoResize]="true"></textarea>
+            </p-inputGroup>
+            <p-button label="Salvar" icon="pi pi-check" iconPos="right" type="submit"></p-button>
+            <p-card
+                [style]="{ 'width': '300px', 'height': '40px', 'display': 'flex', 'justify-content': 'center', 'align-items': 'center'}"
+                class="message" *ngIf="statusMessage">
+                <p>{{ statusMessage }}</p>
+            </p-card>
+        </div>
+    </p-card>
+</form>

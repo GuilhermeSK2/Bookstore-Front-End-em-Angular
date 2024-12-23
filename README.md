@@ -1,4 +1,15 @@
-# BookstoreFrontEnd
+Bookstore Front-End
+
+Front-End simples utilizando Angular e componentes do PrimeNG.
+
+![cdlvr](https://github.com/user-attachments/assets/89267b22-f521-4ce5-9887-f3dae311b6f8)
+
+![bsclvr](https://github.com/user-attachments/assets/2e05c350-3267-4695-acb1-0c2d151ff38b)
+
+![tblvrs](https://github.com/user-attachments/assets/3e5c2640-8ea9-4ccf-a8a3-e502af394465)
+
+![fltstts](https://github.com/user-attachments/assets/d3646925-34b4-4469-9c38-b6acddeaf8d1)
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.10.
 
